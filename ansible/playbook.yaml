@@ -1,0 +1,27 @@
+# LEMP Playbook
+---
+- hosts: "all"
+  become: true
+  tasks:
+  - name: "Install nginx via apt"
+    ansible.builtin.apt: 
+      name: "nginx"
+      state: "latest"
+      update_cache: true
+
+  - name: "Delete /var/ww/html folder"
+    ansible.builtin.file: 
+      path: "/var/www/html"
+      state: "absent"
+
+  - name: "Copy our landing to /var/ww/html folder"
+    ansible.builtin.copy:
+      src: "./files/html"
+      dest: "/var/www/"
+      owner: "vagrant"
+      group: "vagrant"
+      mode: "0644"
+
+  
+
+...
