@@ -1,0 +1,28 @@
+tree .
+.
+├── LICENSE
+├── README.md
+├── Vagrantfile
+└── ansible
+    ├── hosts.ini
+    ├── playbook.yaml
+    └── roles
+        ├── hosts.ini
+        ├── mysql
+        │   └── tasks
+        │       └── main.yml
+        ├── nginx
+        │   ├── files
+        │   │   └── html
+        │   │       ├── index.html
+        │   │       └── index_files
+        │   └── tasks
+        │       └── main.yml
+        ├── php
+        │   ├── files
+        │   │   └── test-php
+        │   │       ├── nginx.conf
+        │   │       └── php_test
+        │   └── tasks
+        │       └── main.yml
+        └── playbook.yml
