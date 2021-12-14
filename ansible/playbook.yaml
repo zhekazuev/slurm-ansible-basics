@@ -62,4 +62,41 @@
       login_user: "root"
       login_password: "password"
 
+  # Installing PHP
+
+  - name: "Installing php fpm and php mysql"
+    ansible.builtin.apt:
+      name: "{{ item }}"
+      state: "latest"
+      update_cache: true
+    with_items:
+      - "php-fpm"
+      - "php-mysql"
+
+  - name: "Copy php files to /var/www"
+    ansible.builtin.copy:
+      src: "files/test-php/php_test"
+      dest: "/var/www/"
+      owner: "vagrant"
+      group: "vagrant"
+      mode: "0644"
+
+  - name: "Copy nginx config for php testing"
+    ansible.builtin.copy:
+      src: "files/test-php/nginx.conf"
+      dest: "/etc/nginx/sites-available/php_test.conf"
+      owner: "vagrant"
+      group: "vagrant"
+      mode: "0644"
+
+  - name: "Link folder"
+    ansible.builtin.file:
+      src: "/etc/nginx/sites-available/php_test.conf"
+      dest: "/etc/nginx/sites-enabled/php_test"
+      state: "link"
+
+  - name: "Reload nginx"
+    ansible.builtin.service:
+      name: "nginx"
+      state: "reloaded"
 ...
