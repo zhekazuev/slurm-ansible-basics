@@ -1,7 +1,5 @@
 # Slurm Ansible Basics
 
-## About
-
 [Learning Ansible with Slurm](https://edu.slurm.io/courses/ansible-basics)
 
 [Source Code for project](https://github.com/Slurmio/ansible_base.git)
